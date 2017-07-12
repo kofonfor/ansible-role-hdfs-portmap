@@ -1,3 +1,7 @@
+- name: turn off the standard portmapper
+  shell: chkconfig --level 35 portmap off --config 30,70 && /etc/init.d/portmap stop
+  when: "ansible_os_family == 'Elbrus'"
+
 - name: put {{ hadoop_distr_prefix }}/bin/portmap_start.sh
   template: src=portmap_start.sh dest={{ hadoop_distr_prefix }}/bin/portmap_start.sh
   when: "ansible_os_family == 'Elbrus'"
